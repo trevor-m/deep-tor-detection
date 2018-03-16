@@ -22,13 +22,13 @@ class Dataset:
     for i in train_data:
       feature = [j for j in i] 
       self.train_x.append(np.array(feature[:-1]))
-      self.train_y.append(np.array(int(feature[-1] == 'TOR')))
+      self.train_y.append(np.array(int(feature[-1] == b'TOR')))
 
 
     for i in train_data:
       feature = [j for j in i] 
       self.testing_x.append(np.array(feature[:-1]))
-      self.testing_y.append(np.array(int(feature[-1] == 'TOR')))
+      self.testing_y.append(np.array(int(feature[-1] == b'TOR')))
 
     #convert those lists into numpy array 
     self.train_x = np.array(self.train_x)
