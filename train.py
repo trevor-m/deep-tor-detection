@@ -5,11 +5,10 @@ import numpy as np
 
 # Settings
 USE_KFOLD = True
-NORMALIZE_DATA = False
 
 if __name__ == '__main__':
-  dataset = Dataset(train_filename='TorCSV/Scenario-A/TimeBasedFeatures-15s-TOR-NonTOR-85.arff',
-                    testing_filename='TorCSV/Scenario-A/TimeBasedFeatures-15s-TOR-NonTOR-15.arff')
+  dataset = Dataset(train_filename='TorCSV/Scenario-A/TimeBasedFeatures-60s-TOR-NonTOR-85.arff',
+                    testing_filename='TorCSV/Scenario-A/TimeBasedFeatures-60s-TOR-NonTOR-15.arff')
   if USE_KFOLD:
     # k-fold cross validation
     accs = []
@@ -36,8 +35,6 @@ if __name__ == '__main__':
     print('Average Precision:', np.mean(precs), '+/-', np.std(precs))
     print('Average Recall:', np.mean(recs), '+/-', np.std(recs))
   else:
-    if NORMALIZE_DATA:
-      dataset.normalize()
     model = Model(num_features=23, num_classes=2)
     model.train(dataset.train_x, dataset.train_y)
     loss, acc = model.test(dataset.testing_x, dataset.testing_y)
